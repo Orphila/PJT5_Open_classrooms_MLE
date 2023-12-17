@@ -1,0 +1,7 @@
+mlruns/
+corpora/
+.venv/
+
+*.db
+*.DS_Store
+*.code-workspace
