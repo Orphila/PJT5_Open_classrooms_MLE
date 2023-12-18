@@ -1,7 +1,10 @@
 mlruns/
 corpora/
 .venv/
+.pytest_cache/
+__pycache__/
 
 *.db
 *.DS_Store
 *.code-workspace
+
