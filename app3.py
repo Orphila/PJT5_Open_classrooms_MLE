@@ -117,6 +117,7 @@ def load_spv():
 lda_model = load_unspv()
 supervised = load_spv()
 
+top_n = 3
 top_topics_sklearn = lda_model.transform(tfidf_df).argsort(axis=1)[:, -top_n:]
 df['lda_predict_sklearn'] = [topics for topics in top_topics_sklearn]
 
@@ -187,8 +188,7 @@ def predict(text):
     X_pred_tfidf = encoding(X_pred['text'])
     #Prédiction supervisée (tfidf)
     predicted_tags_supervised = supervised.predict(X_pred_tfidf).tolist()
-
-    top_n = 3
+    
     top_topics = lda_model.transform(X_pred_tfidf).argsort(axis=1)[:, -top_n:]
     result_numbers = [topics.tolist() for topics in top_topics]
     result_numbers  = [str(float(num)) for num in result_numbers[0]]
