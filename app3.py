@@ -74,6 +74,7 @@ tfidf_vectorizer = TfidfVectorizer(max_features=1000)
 def load_df():
     ct = 'QueryResults (1).csv'
     df = pd.read_csv(ct)
+    df['Cleaned_Body'] = df['Body'].apply(transform_bow_fct)
     return df
 
 df = load_df()
