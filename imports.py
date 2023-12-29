@@ -27,15 +27,17 @@ df['Tags'] = df['Tags'].str.split(',').apply(filter_tags)
 df = df[df['Tags'].apply(len) > 0]
 
 df['nb_tags'] = df['Tags'].apply(lambda x: len(x))
-df = df[df['nb_tags']==3]
+df = df[df['nb_tags']==3].reset_index(drop=True)
 
 ############################################# Nettoyage du texte #############################################
 
+# @title Nettoyage du texte
 import pickle
 import nltk
-nltk.download('word_tokenize')
+
 from nltk.tokenize import sent_tokenize, word_tokenize
 from nltk.stem import WordNetLemmatizer
+from bs4 import BeautifulSoup
 
 custom_punkt_path = '/Users/orphila_adjovi/PJT5_Open_classrooms_MLE/corpora/punkt'
 punkt_path = nltk.data.find(f'{custom_punkt_path}/english.pickle')
@@ -48,15 +50,18 @@ with open('/Users/orphila_adjovi/PJT5_Open_classrooms_MLE/corpora/stopwords/engl
     custom_stopwords = file.read().splitlines()
     
 # Nettoyage
+def strip_html_bs(text):
+    soup = BeautifulSoup(text, 'html.parser')
+    return soup.get_text()
+
 def tokenizer_fct(sentence):
     """Division de mots en texte + suppression de certains caractères"""
     sentence_clean = sentence.replace('-', ' ').replace('+', ' ').replace('/', ' ').replace('#', ' ')
-    #word_tokens = word_tokenize(sentence_clean, language='english', path_to_punkt=punkt_path)
-    word_tokens = punkt_model.tokenize(sentence_clean)
+    word_tokens = sentence_clean.split()
     return word_tokens
 
-
 stop_w = custom_stopwords + ['[', ']', ',', '.', ':', '?', '(', ')','<','>','~']
+
 def stop_word_filter_fct(list_words):
     """Suppression de mots sans information+ ponctuations"""
     filtered_w = [w for w in list_words if not w in stop_w]
@@ -76,15 +81,15 @@ def lemma_fct(list_words):
 
 def transform_bow_fct(desc_text):
     """fonction de transformation"""
-    word_tokens = tokenizer_fct(desc_text)
-    sw = stop_word_filter_fct(word_tokens)
-    lw = lower_start_fct(sw)
-    transf_desc_text = ' '.join(lw)
+    text_stripped = strip_html_bs(desc_text)
+    word_tokens = tokenizer_fct(text_stripped)
+    lw = lower_start_fct(word_tokens)
+    sw = stop_word_filter_fct(lw)
+    transf_desc_text = ' '.join(sw)
     return transf_desc_text
 
 # Prétraitement
 df['Cleaned_Body'] = df['Body'].apply(transform_bow_fct)
-
 
 ############################################# Encoding TF - IDF  #############################################
 
