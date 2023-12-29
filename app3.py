@@ -117,7 +117,7 @@ def load_spv():
 lda_model = load_unspv()
 supervised = load_spv()
 
-top_topics_sklearn = lda_model.transform(X).argsort(axis=1)[:, -top_n:]
+top_topics_sklearn = lda_model.transform(tfidf_df).argsort(axis=1)[:, -top_n:]
 df['lda_predict_sklearn'] = [topics for topics in top_topics_sklearn]
 
 from collections import defaultdict
