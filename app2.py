@@ -7,23 +7,16 @@ import mlflow
 app = Flask(__name__)
 
 ################################################ Nettoyage du texte
-import pickle
 import nltk
-
 from nltk.tokenize import sent_tokenize, word_tokenize
+from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
+
+nltk.download('stopwords')
+nltk.download('wordnet')
+
 from bs4 import BeautifulSoup
 
-custom_punkt_path = '/Users/orphila_adjovi/PJT5_Open_classrooms_MLE/corpora/punkt'
-punkt_path = nltk.data.find(f'{custom_punkt_path}/english.pickle')
-
-with open(punkt_path, 'rb') as file:
-    punkt_model = pickle.load(file)
-nltk.data.path.append(custom_punkt_path)
-
-with open('/Users/orphila_adjovi/PJT5_Open_classrooms_MLE/corpora/stopwords/english', 'r') as file:
-    custom_stopwords = file.read().splitlines()
-    
 # Nettoyage
 def strip_html_bs(text):
     soup = BeautifulSoup(text, 'html.parser')
@@ -32,10 +25,10 @@ def strip_html_bs(text):
 def tokenizer_fct(sentence):
     """Division de mots en texte + suppression de certains caractères"""
     sentence_clean = sentence.replace('-', ' ').replace('+', ' ').replace('/', ' ').replace('#', ' ')
-    word_tokens = sentence_clean.split()
+    word_tokens = word_tokenize(sentence_clean)
     return word_tokens
 
-stop_w = custom_stopwords + ['[', ']', ',', '.', ':', '?', '(', ')','<','>','~']
+stop_w = list(set(stopwords.words('english'))) + ['[', ']', ',', '.', ':', '?', '(', ')','<','>','~']
 
 def stop_word_filter_fct(list_words):
     """Suppression de mots sans information+ ponctuations"""
@@ -72,7 +65,7 @@ def preprocess(df):
 def preprocess_text(text):
     cleaned_text = transform_bow_fct(text)
     return cleaned_text
-
+    
 ################################################ Encoding TF - IDF
 
 from sklearn.feature_extraction.text import TfidfVectorizer
