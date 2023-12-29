@@ -13,14 +13,15 @@ from nltk.tokenize import sent_tokenize, word_tokenize
 from nltk.stem import WordNetLemmatizer
 from bs4 import BeautifulSoup
 
-custom_punkt_path = '/Users/orphila_adjovi/PJT5_Open_classrooms_MLE/corpora/punkt'
+base = 'k_a_o_adjovi@instance-1/home/k_a_o_adjovi/PJT5_Open_classrooms_MLE/
+custom_punkt_path = base + 'corpora/punkt'
 punkt_path = nltk.data.find(f'{custom_punkt_path}/english.pickle')
 
 with open(punkt_path, 'rb') as file:
     punkt_model = pickle.load(file)
 nltk.data.path.append(custom_punkt_path)
 
-with open('/Users/orphila_adjovi/PJT5_Open_classrooms_MLE/corpora/stopwords/english', 'r') as file:
+with open(base+'corpora/stopwords/english', 'r') as file:
     custom_stopwords = file.read().splitlines()
     
 # Nettoyage
