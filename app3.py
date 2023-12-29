@@ -117,6 +117,9 @@ def load_spv():
 lda_model = load_unspv()
 supervised = load_spv()
 
+top_topics_sklearn = lda_model_sklearn.transform(X).argsort(axis=1)[:, -top_n:]
+df['lda_predict_sklearn'] = [topics for topics in top_topics_sklearn]
+
 from collections import defaultdict
 def load_dico():
     tag_counts = defaultdict(lambda: defaultdict(int))
