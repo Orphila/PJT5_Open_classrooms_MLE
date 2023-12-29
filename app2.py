@@ -68,9 +68,7 @@ def preprocess_text(text):
     
 ################################################ Encoding TF - IDF
 
-from sklearn.feature_extraction.text import TfidfVectorizer
-tfidf_vectorizer = TfidfVectorizer(max_features=1000)
-
+import json 
 def load_vec():
     path = "tfidf_vectorizer"
     with open(path, 'r') as file:
@@ -78,9 +76,6 @@ def load_vec():
     return doc
 
 vec_tfidf = load_vec()
-
-import json 
-import os
 
 def load_dico():
     path =  "topic_to_tag.json"
