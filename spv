@@ -1,0 +1,479 @@
+artifact_path: model
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.10.9
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.3.2
+mlflow_version: 2.8.1
+model_size_bytes: 812860
+model_uuid: eb6f24bdb5934207810079141d153d35
+run_id: dc70cf8a83b04686a8149fd4401421ad
+signature:
+  inputs: '[{"type": "double", "name": "00"}, {"type": "double", "name": "000"}, {"type":
+    "double", "name": "01"}, {"type": "double", "name": "02"}, {"type": "double",
+    "name": "06"}, {"type": "double", "name": "08"}, {"type": "double", "name": "0px"},
+    {"type": "double", "name": "10"}, {"type": "double", "name": "100"}, {"type":
+    "double", "name": "1000"}, {"type": "double", "name": "10px"}, {"type": "double",
+    "name": "11"}, {"type": "double", "name": "12"}, {"type": "double", "name": "13"},
+    {"type": "double", "name": "14"}, {"type": "double", "name": "15"}, {"type": "double",
+    "name": "16"}, {"type": "double", "name": "17"}, {"type": "double", "name": "18"},
+    {"type": "double", "name": "19"}, {"type": "double", "name": "1px"}, {"type":
+    "double", "name": "20"}, {"type": "double", "name": "200"}, {"type": "double",
+    "name": "2013"}, {"type": "double", "name": "2016"}, {"type": "double", "name":
+    "2019"}, {"type": "double", "name": "2020"}, {"type": "double", "name": "21"},
+    {"type": "double", "name": "22"}, {"type": "double", "name": "23"}, {"type": "double",
+    "name": "24"}, {"type": "double", "name": "25"}, {"type": "double", "name": "255"},
+    {"type": "double", "name": "29"}, {"type": "double", "name": "30"}, {"type": "double",
+    "name": "31"}, {"type": "double", "name": "38"}, {"type": "double", "name": "40"},
+    {"type": "double", "name": "45"}, {"type": "double", "name": "50"}, {"type": "double",
+    "name": "500"}, {"type": "double", "name": "_post"}, {"type": "double", "name":
+    "able"}, {"type": "double", "name": "absolute"}, {"type": "double", "name": "access"},
+    {"type": "double", "name": "account"}, {"type": "double", "name": "achieve"},
+    {"type": "double", "name": "action"}, {"type": "double", "name": "active"}, {"type":
+    "double", "name": "activity"}, {"type": "double", "name": "actual"}, {"type":
+    "double", "name": "actually"}, {"type": "double", "name": "add"}, {"type": "double",
+    "name": "added"}, {"type": "double", "name": "adding"}, {"type": "double", "name":
+    "address"}, {"type": "double", "name": "admin"}, {"type": "double", "name": "advance"},
+    {"type": "double", "name": "age"}, {"type": "double", "name": "ajax"}, {"type":
+    "double", "name": "alert"}, {"type": "double", "name": "align"}, {"type": "double",
+    "name": "all"}, {"type": "double", "name": "alloc"}, {"type": "double", "name":
+    "allow"}, {"type": "double", "name": "already"}, {"type": "double", "name": "also"},
+    {"type": "double", "name": "alt"}, {"type": "double", "name": "always"}, {"type":
+    "double", "name": "amet"}, {"type": "double", "name": "amount"}, {"type": "double",
+    "name": "and"}, {"type": "double", "name": "android"}, {"type": "double", "name":
+    "angular"}, {"type": "double", "name": "animation"}, {"type": "double", "name":
+    "annotation"}, {"type": "double", "name": "another"}, {"type": "double", "name":
+    "answer"}, {"type": "double", "name": "answers"}, {"type": "double", "name": "anyone"},
+    {"type": "double", "name": "anything"}, {"type": "double", "name": "apache"},
+    {"type": "double", "name": "api"}, {"type": "double", "name": "app"}, {"type":
+    "double", "name": "appears"}, {"type": "double", "name": "append"}, {"type": "double",
+    "name": "apple"}, {"type": "double", "name": "application"}, {"type": "double",
+    "name": "apply"}, {"type": "double", "name": "appreciated"}, {"type": "double",
+    "name": "approach"}, {"type": "double", "name": "args"}, {"type": "double", "name":
+    "arguments"}, {"type": "double", "name": "aria"}, {"type": "double", "name": "around"},
+    {"type": "double", "name": "arr"}, {"type": "double", "name": "array"}, {"type":
+    "double", "name": "arraylist"}, {"type": "double", "name": "arrays"}, {"type":
+    "double", "name": "artifactid"}, {"type": "double", "name": "as"}, {"type": "double",
+    "name": "asp"}, {"type": "double", "name": "aspx"}, {"type": "double", "name":
+    "async"}, {"type": "double", "name": "attr"}, {"type": "double", "name": "attribute"},
+    {"type": "double", "name": "attributes"}, {"type": "double", "name": "auto"},
+    {"type": "double", "name": "automatically"}, {"type": "double", "name": "available"},
+    {"type": "double", "name": "await"}, {"type": "double", "name": "back"}, {"type":
+    "double", "name": "background"}, {"type": "double", "name": "bar"}, {"type": "double",
+    "name": "base"}, {"type": "double", "name": "based"}, {"type": "double", "name":
+    "basically"}, {"type": "double", "name": "bbs"}, {"type": "double", "name": "bean"},
+    {"type": "double", "name": "beans"}, {"type": "double", "name": "before"}, {"type":
+    "double", "name": "below"}, {"type": "double", "name": "best"}, {"type": "double",
+    "name": "better"}, {"type": "double", "name": "bin"}, {"type": "double", "name":
+    "bind"}, {"type": "double", "name": "binding"}, {"type": "double", "name": "bit"},
+    {"type": "double", "name": "block"}, {"type": "double", "name": "body"}, {"type":
+    "double", "name": "bool"}, {"type": "double", "name": "boolean"}, {"type": "double",
+    "name": "boot"}, {"type": "double", "name": "bootstrap"}, {"type": "double", "name":
+    "border"}, {"type": "double", "name": "bottom"}, {"type": "double", "name": "box"},
+    {"type": "double", "name": "br"}, {"type": "double", "name": "break"}, {"type":
+    "double", "name": "browser"}, {"type": "double", "name": "btn"}, {"type": "double",
+    "name": "buffer"}, {"type": "double", "name": "build"}, {"type": "double", "name":
+    "builder"}, {"type": "double", "name": "building"}, {"type": "double", "name":
+    "built"}, {"type": "double", "name": "bundle"}, {"type": "double", "name": "button"},
+    {"type": "double", "name": "buttons"}, {"type": "double", "name": "byte"}, {"type":
+    "double", "name": "bytes"}, {"type": "double", "name": "cache"}, {"type": "double",
+    "name": "call"}, {"type": "double", "name": "callback"}, {"type": "double", "name":
+    "called"}, {"type": "double", "name": "calling"}, {"type": "double", "name": "calls"},
+    {"type": "double", "name": "can"}, {"type": "double", "name": "cannot"}, {"type":
+    "double", "name": "canvas"}, {"type": "double", "name": "carousel"}, {"type":
+    "double", "name": "case"}, {"type": "double", "name": "catch"}, {"type": "double",
+    "name": "category"}, {"type": "double", "name": "cell"}, {"type": "double", "name":
+    "center"}, {"type": "double", "name": "change"}, {"type": "double", "name": "changed"},
+    {"type": "double", "name": "changes"}, {"type": "double", "name": "char"}, {"type":
+    "double", "name": "character"}, {"type": "double", "name": "characters"}, {"type":
+    "double", "name": "charset"}, {"type": "double", "name": "chart"}, {"type": "double",
+    "name": "check"}, {"type": "double", "name": "checkbox"}, {"type": "double", "name":
+    "checked"}, {"type": "double", "name": "child"}, {"type": "double", "name": "children"},
+    {"type": "double", "name": "chrome"}, {"type": "double", "name": "city"}, {"type":
+    "double", "name": "class"}, {"type": "double", "name": "classes"}, {"type": "double",
+    "name": "classname"}, {"type": "double", "name": "clear"}, {"type": "double",
+    "name": "click"}, {"type": "double", "name": "clicked"}, {"type": "double", "name":
+    "client"}, {"type": "double", "name": "close"}, {"type": "double", "name": "cmd"},
+    {"type": "double", "name": "co"}, {"type": "double", "name": "code"}, {"type":
+    "double", "name": "col"}, {"type": "double", "name": "collapse"}, {"type": "double",
+    "name": "color"}, {"type": "double", "name": "column"}, {"type": "double", "name":
+    "columns"}, {"type": "double", "name": "com"}, {"type": "double", "name": "come"},
+    {"type": "double", "name": "command"}, {"type": "double", "name": "comment"},
+    {"type": "double", "name": "comments"}, {"type": "double", "name": "common"},
+    {"type": "double", "name": "compile"}, {"type": "double", "name": "complete"},
+    {"type": "double", "name": "component"}, {"type": "double", "name": "config"},
+    {"type": "double", "name": "configuration"}, {"type": "double", "name": "conn"},
+    {"type": "double", "name": "connect"}, {"type": "double", "name": "connection"},
+    {"type": "double", "name": "console"}, {"type": "double", "name": "const"}, {"type":
+    "double", "name": "constructor"}, {"type": "double", "name": "contact"}, {"type":
+    "double", "name": "container"}, {"type": "double", "name": "contains"}, {"type":
+    "double", "name": "content"}, {"type": "double", "name": "contents"}, {"type":
+    "double", "name": "context"}, {"type": "double", "name": "control"}, {"type":
+    "double", "name": "controller"}, {"type": "double", "name": "controls"}, {"type":
+    "double", "name": "convert"}, {"type": "double", "name": "cookie"}, {"type": "double",
+    "name": "copy"}, {"type": "double", "name": "core"}, {"type": "double", "name":
+    "correct"}, {"type": "double", "name": "correctly"}, {"type": "double", "name":
+    "could"}, {"type": "double", "name": "count"}, {"type": "double", "name": "country"},
+    {"type": "double", "name": "course"}, {"type": "double", "name": "create"}, {"type":
+    "double", "name": "created"}, {"type": "double", "name": "creating"}, {"type":
+    "double", "name": "css"}, {"type": "double", "name": "csv"}, {"type": "double",
+    "name": "current"}, {"type": "double", "name": "currently"}, {"type": "double",
+    "name": "cursor"}, {"type": "double", "name": "custom"}, {"type": "double", "name":
+    "customer"}, {"type": "double", "name": "custtable0_"}, {"type": "double", "name":
+    "data"}, {"type": "double", "name": "database"}, {"type": "double", "name": "dataframe"},
+    {"type": "double", "name": "datasource"}, {"type": "double", "name": "datatable"},
+    {"type": "double", "name": "datatype"}, {"type": "double", "name": "date"}, {"type":
+    "double", "name": "datetime"}, {"type": "double", "name": "day"}, {"type": "double",
+    "name": "db"}, {"type": "double", "name": "debug"}, {"type": "double", "name":
+    "def"}, {"type": "double", "name": "default"}, {"type": "double", "name": "define"},
+    {"type": "double", "name": "defined"}, {"type": "double", "name": "delegate"},
+    {"type": "double", "name": "delete"}, {"type": "double", "name": "dependency"},
+    {"type": "double", "name": "description"}, {"type": "double", "name": "details"},
+    {"type": "double", "name": "developer"}, {"type": "double", "name": "development"},
+    {"type": "double", "name": "device"}, {"type": "double", "name": "df"}, {"type":
+    "double", "name": "dialog"}, {"type": "double", "name": "different"}, {"type":
+    "double", "name": "directly"}, {"type": "double", "name": "directory"}, {"type":
+    "double", "name": "disabled"}, {"type": "double", "name": "display"}, {"type":
+    "double", "name": "displayed"}, {"type": "double", "name": "div"}, {"type": "double",
+    "name": "django"}, {"type": "double", "name": "dll"}, {"type": "double", "name":
+    "do"}, {"type": "double", "name": "doctype"}, {"type": "double", "name": "document"},
+    {"type": "double", "name": "documentation"}, {"type": "double", "name": "documents"},
+    {"type": "double", "name": "doler"}, {"type": "double", "name": "domain"}, {"type":
+    "double", "name": "done"}, {"type": "double", "name": "double"}, {"type": "double",
+    "name": "download"}, {"type": "double", "name": "drawable"}, {"type": "double",
+    "name": "driver"}, {"type": "double", "name": "drop"}, {"type": "double", "name":
+    "dropdown"}, {"type": "double", "name": "each"}, {"type": "double", "name": "echo"},
+    {"type": "double", "name": "edit"}, {"type": "double", "name": "either"}, {"type":
+    "double", "name": "element"}, {"type": "double", "name": "elements"}, {"type":
+    "double", "name": "else"}, {"type": "double", "name": "email"}, {"type": "double",
+    "name": "empty"}, {"type": "double", "name": "enabled"}, {"type": "double", "name":
+    "encoding"}, {"type": "double", "name": "end"}, {"type": "double", "name": "enter"},
+    {"type": "double", "name": "entity"}, {"type": "double", "name": "entry"}, {"type":
+    "double", "name": "env"}, {"type": "double", "name": "environment"}, {"type":
+    "double", "name": "err"}, {"type": "double", "name": "error"}, {"type": "double",
+    "name": "errors"}, {"type": "double", "name": "etc"}, {"type": "double", "name":
+    "even"}, {"type": "double", "name": "event"}, {"type": "double", "name": "events"},
+    {"type": "double", "name": "every"}, {"type": "double", "name": "everything"},
+    {"type": "double", "name": "ex"}, {"type": "double", "name": "example"}, {"type":
+    "double", "name": "except"}, {"type": "double", "name": "exception"}, {"type":
+    "double", "name": "execute"}, {"type": "double", "name": "exists"}, {"type": "double",
+    "name": "expected"}, {"type": "double", "name": "export"}, {"type": "double",
+    "name": "express"}, {"type": "double", "name": "extends"}, {"type": "double",
+    "name": "factory"}, {"type": "double", "name": "failed"}, {"type": "double", "name":
+    "false"}, {"type": "double", "name": "family"}, {"type": "double", "name": "far"},
+    {"type": "double", "name": "fetch"}, {"type": "double", "name": "field"}, {"type":
+    "double", "name": "fields"}, {"type": "double", "name": "figure"}, {"type": "double",
+    "name": "file"}, {"type": "double", "name": "filename"}, {"type": "double", "name":
+    "files"}, {"type": "double", "name": "fill"}, {"type": "double", "name": "filter"},
+    {"type": "double", "name": "final"}, {"type": "double", "name": "find"}, {"type":
+    "double", "name": "findviewbyid"}, {"type": "double", "name": "fine"}, {"type":
+    "double", "name": "firefox"}, {"type": "double", "name": "first"}, {"type": "double",
+    "name": "firstname"}, {"type": "double", "name": "fix"}, {"type": "double", "name":
+    "fixed"}, {"type": "double", "name": "float"}, {"type": "double", "name": "folder"},
+    {"type": "double", "name": "following"}, {"type": "double", "name": "font"}, {"type":
+    "double", "name": "foo"}, {"type": "double", "name": "footer"}, {"type": "double",
+    "name": "for"}, {"type": "double", "name": "foreach"}, {"type": "double", "name":
+    "form"}, {"type": "double", "name": "format"}, {"type": "double", "name": "forms"},
+    {"type": "double", "name": "found"}, {"type": "double", "name": "frame"}, {"type":
+    "double", "name": "framework"}, {"type": "double", "name": "from"}, {"type": "double",
+    "name": "full"}, {"type": "double", "name": "func"}, {"type": "double", "name":
+    "function"}, {"type": "double", "name": "functions"}, {"type": "double", "name":
+    "gems"}, {"type": "double", "name": "generate"}, {"type": "double", "name": "generated"},
+    {"type": "double", "name": "get"}, {"type": "double", "name": "getelementbyid"},
+    {"type": "double", "name": "gets"}, {"type": "double", "name": "getstring"}, {"type":
+    "double", "name": "getting"}, {"type": "double", "name": "github"}, {"type": "double",
+    "name": "give"}, {"type": "double", "name": "given"}, {"type": "double", "name":
+    "gives"}, {"type": "double", "name": "going"}, {"type": "double", "name": "good"},
+    {"type": "double", "name": "google"}, {"type": "double", "name": "got"}, {"type":
+    "double", "name": "great"}, {"type": "double", "name": "grid"}, {"type": "double",
+    "name": "group"}, {"type": "double", "name": "groupid"}, {"type": "double", "name":
+    "guess"}, {"type": "double", "name": "h1"}, {"type": "double", "name": "h2"},
+    {"type": "double", "name": "handle"}, {"type": "double", "name": "handler"}, {"type":
+    "double", "name": "happens"}, {"type": "double", "name": "head"}, {"type": "double",
+    "name": "header"}, {"type": "double", "name": "headers"}, {"type": "double", "name":
+    "height"}, {"type": "double", "name": "hello"}, {"type": "double", "name": "help"},
+    {"type": "double", "name": "here"}, {"type": "double", "name": "hibernate"}, {"type":
+    "double", "name": "hidden"}, {"type": "double", "name": "hide"}, {"type": "double",
+    "name": "home"}, {"type": "double", "name": "host"}, {"type": "double", "name":
+    "hover"}, {"type": "double", "name": "however"}, {"type": "double", "name": "href"},
+    {"type": "double", "name": "html"}, {"type": "double", "name": "http"}, {"type":
+    "double", "name": "https"}, {"type": "double", "name": "ibb"}, {"type": "double",
+    "name": "icon"}, {"type": "double", "name": "id"}, {"type": "double", "name":
+    "idea"}, {"type": "double", "name": "ideas"}, {"type": "double", "name": "if"},
+    {"type": "double", "name": "iframe"}, {"type": "double", "name": "image"}, {"type":
+    "double", "name": "images"}, {"type": "double", "name": "imageview"}, {"type":
+    "double", "name": "img"}, {"type": "double", "name": "implement"}, {"type": "double",
+    "name": "import"}, {"type": "double", "name": "important"}, {"type": "double",
+    "name": "in"}, {"type": "double", "name": "include"}, {"type": "double", "name":
+    "index"}, {"type": "double", "name": "indexpath"}, {"type": "double", "name":
+    "info"}, {"type": "double", "name": "information"}, {"type": "double", "name":
+    "init"}, {"type": "double", "name": "initial"}, {"type": "double", "name": "inline"},
+    {"type": "double", "name": "inner"}, {"type": "double", "name": "input"}, {"type":
+    "double", "name": "insert"}, {"type": "double", "name": "inside"}, {"type": "double",
+    "name": "install"}, {"type": "double", "name": "installed"}, {"type": "double",
+    "name": "instance"}, {"type": "double", "name": "instead"}, {"type": "double",
+    "name": "int"}, {"type": "double", "name": "integer"}, {"type": "double", "name":
+    "intent"}, {"type": "double", "name": "interface"}, {"type": "double", "name":
+    "internal"}, {"type": "double", "name": "invoke"}, {"type": "double", "name":
+    "io"}, {"type": "double", "name": "ios"}, {"type": "double", "name": "iphone"},
+    {"type": "double", "name": "ipsum"}, {"type": "double", "name": "is"}, {"type":
+    "double", "name": "issue"}, {"type": "double", "name": "issues"}, {"type": "double",
+    "name": "it"}, {"type": "double", "name": "item"}, {"type": "double", "name":
+    "items"}, {"type": "double", "name": "jar"}, {"type": "double", "name": "java"},
+    {"type": "double", "name": "javascript"}, {"type": "double", "name": "javax"},
+    {"type": "double", "name": "jdbc"}, {"type": "double", "name": "join"}, {"type":
+    "double", "name": "jpg"}, {"type": "double", "name": "jquery"}, {"type": "double",
+    "name": "js"}, {"type": "double", "name": "jsfiddle"}, {"type": "double", "name":
+    "json"}, {"type": "double", "name": "keep"}, {"type": "double", "name": "key"},
+    {"type": "double", "name": "keys"}, {"type": "double", "name": "kind"}, {"type":
+    "double", "name": "know"}, {"type": "double", "name": "label"}, {"type": "double",
+    "name": "lang"}, {"type": "double", "name": "language"}, {"type": "double", "name":
+    "large"}, {"type": "double", "name": "last"}, {"type": "double", "name": "layout"},
+    {"type": "double", "name": "layout_height"}, {"type": "double", "name": "layout_width"},
+    {"type": "double", "name": "left"}, {"type": "double", "name": "len"}, {"type":
+    "double", "name": "length"}, {"type": "double", "name": "let"}, {"type": "double",
+    "name": "level"}, {"type": "double", "name": "li"}, {"type": "double", "name":
+    "lib"}, {"type": "double", "name": "library"}, {"type": "double", "name": "libs"},
+    {"type": "double", "name": "like"}, {"type": "double", "name": "limit"}, {"type":
+    "double", "name": "line"}, {"type": "double", "name": "lines"}, {"type": "double",
+    "name": "link"}, {"type": "double", "name": "links"}, {"type": "double", "name":
+    "linux"}, {"type": "double", "name": "list"}, {"type": "double", "name": "listview"},
+    {"type": "double", "name": "little"}, {"type": "double", "name": "load"}, {"type":
+    "double", "name": "loaded"}, {"type": "double", "name": "loading"}, {"type": "double",
+    "name": "local"}, {"type": "double", "name": "localhost"}, {"type": "double",
+    "name": "location"}, {"type": "double", "name": "log"}, {"type": "double", "name":
+    "login"}, {"type": "double", "name": "long"}, {"type": "double", "name": "look"},
+    {"type": "double", "name": "looking"}, {"type": "double", "name": "looks"}, {"type":
+    "double", "name": "loop"}, {"type": "double", "name": "lorem"}, {"type": "double",
+    "name": "lot"}, {"type": "double", "name": "made"}, {"type": "double", "name":
+    "main"}, {"type": "double", "name": "make"}, {"type": "double", "name": "making"},
+    {"type": "double", "name": "many"}, {"type": "double", "name": "map"}, {"type":
+    "double", "name": "maps"}, {"type": "double", "name": "margin"}, {"type": "double",
+    "name": "mat"}, {"type": "double", "name": "match"}, {"type": "double", "name":
+    "match_parent"}, {"type": "double", "name": "maven"}, {"type": "double", "name":
+    "max"}, {"type": "double", "name": "may"}, {"type": "double", "name": "maybe"},
+    {"type": "double", "name": "me"}, {"type": "double", "name": "media"}, {"type":
+    "double", "name": "memory"}, {"type": "double", "name": "menu"}, {"type": "double",
+    "name": "message"}, {"type": "double", "name": "messages"}, {"type": "double",
+    "name": "meta"}, {"type": "double", "name": "method"}, {"type": "double", "name":
+    "methods"}, {"type": "double", "name": "microsoft"}, {"type": "double", "name":
+    "might"}, {"type": "double", "name": "min"}, {"type": "double", "name": "missing"},
+    {"type": "double", "name": "mobile"}, {"type": "double", "name": "modal"}, {"type":
+    "double", "name": "mode"}, {"type": "double", "name": "model"}, {"type": "double",
+    "name": "models"}, {"type": "double", "name": "module"}, {"type": "double", "name":
+    "month"}, {"type": "double", "name": "move"}, {"type": "double", "name": "msg"},
+    {"type": "double", "name": "much"}, {"type": "double", "name": "multiple"}, {"type":
+    "double", "name": "must"}, {"type": "double", "name": "mvc"}, {"type": "double",
+    "name": "my"}, {"type": "double", "name": "mysql"}, {"type": "double", "name":
+    "name"}, {"type": "double", "name": "named"}, {"type": "double", "name": "names"},
+    {"type": "double", "name": "namespace"}, {"type": "double", "name": "native"},
+    {"type": "double", "name": "nav"}, {"type": "double", "name": "navbar"}, {"type":
+    "double", "name": "navigation"}, {"type": "double", "name": "nbsp"}, {"type":
+    "double", "name": "need"}, {"type": "double", "name": "needs"}, {"type": "double",
+    "name": "nested"}, {"type": "double", "name": "net"}, {"type": "double", "name":
+    "never"}, {"type": "double", "name": "new"}, {"type": "double", "name": "next"},
+    {"type": "double", "name": "nil"}, {"type": "double", "name": "no"}, {"type":
+    "double", "name": "node"}, {"type": "double", "name": "node_modules"}, {"type":
+    "double", "name": "non"}, {"type": "double", "name": "none"}, {"type": "double",
+    "name": "normal"}, {"type": "double", "name": "not"}, {"type": "double", "name":
+    "note"}, {"type": "double", "name": "nothing"}, {"type": "double", "name": "now"},
+    {"type": "double", "name": "npm"}, {"type": "double", "name": "nslog"}, {"type":
+    "double", "name": "nsstring"}, {"type": "double", "name": "null"}, {"type": "double",
+    "name": "nullable"}, {"type": "double", "name": "number"}, {"type": "double",
+    "name": "obj"}, {"type": "double", "name": "object"}, {"type": "double", "name":
+    "objects"}, {"type": "double", "name": "offset"}, {"type": "double", "name": "ok"},
+    {"type": "double", "name": "old"}, {"type": "double", "name": "on"}, {"type":
+    "double", "name": "onclick"}, {"type": "double", "name": "oncreate"}, {"type":
+    "double", "name": "one"}, {"type": "double", "name": "opacity"}, {"type": "double",
+    "name": "open"}, {"type": "double", "name": "operation"}, {"type": "double", "name":
+    "option"}, {"type": "double", "name": "options"}, {"type": "double", "name": "or"},
+    {"type": "double", "name": "order"}, {"type": "double", "name": "org"}, {"type":
+    "double", "name": "origin"}, {"type": "double", "name": "original"}, {"type":
+    "double", "name": "os"}, {"type": "double", "name": "out"}, {"type": "double",
+    "name": "output"}, {"type": "double", "name": "overflow"}, {"type": "double",
+    "name": "override"}, {"type": "double", "name": "package"}, {"type": "double",
+    "name": "packages"}, {"type": "double", "name": "padding"}, {"type": "double",
+    "name": "page"}, {"type": "double", "name": "pages"}, {"type": "double", "name":
+    "pandas"}, {"type": "double", "name": "panel"}, {"type": "double", "name": "parameter"},
+    {"type": "double", "name": "parameters"}, {"type": "double", "name": "params"},
+    {"type": "double", "name": "parent"}, {"type": "double", "name": "parse"}, {"type":
+    "double", "name": "part"}, {"type": "double", "name": "pass"}, {"type": "double",
+    "name": "passed"}, {"type": "double", "name": "password"}, {"type": "double",
+    "name": "path"}, {"type": "double", "name": "pattern"}, {"type": "double", "name":
+    "pdf"}, {"type": "double", "name": "people"}, {"type": "double", "name": "per"},
+    {"type": "double", "name": "performance"}, {"type": "double", "name": "person"},
+    {"type": "double", "name": "phone"}, {"type": "double", "name": "php"}, {"type":
+    "double", "name": "place"}, {"type": "double", "name": "placeholder"}, {"type":
+    "double", "name": "platform"}, {"type": "double", "name": "please"}, {"type":
+    "double", "name": "plugin"}, {"type": "double", "name": "png"}, {"type": "double",
+    "name": "point"}, {"type": "double", "name": "port"}, {"type": "double", "name":
+    "position"}, {"type": "double", "name": "possible"}, {"type": "double", "name":
+    "post"}, {"type": "double", "name": "posts"}, {"type": "double", "name": "previous"},
+    {"type": "double", "name": "price"}, {"type": "double", "name": "primary"}, {"type":
+    "double", "name": "print"}, {"type": "double", "name": "println"}, {"type": "double",
+    "name": "private"}, {"type": "double", "name": "problem"}, {"type": "double",
+    "name": "process"}, {"type": "double", "name": "product"}, {"type": "double",
+    "name": "products"}, {"type": "double", "name": "profile"}, {"type": "double",
+    "name": "program"}, {"type": "double", "name": "progress"}, {"type": "double",
+    "name": "project"}, {"type": "double", "name": "projects"}, {"type": "double",
+    "name": "properly"}, {"type": "double", "name": "properties"}, {"type": "double",
+    "name": "property"}, {"type": "double", "name": "props"}, {"type": "double", "name":
+    "protected"}, {"type": "double", "name": "public"}, {"type": "double", "name":
+    "push"}, {"type": "double", "name": "put"}, {"type": "double", "name": "py"},
+    {"type": "double", "name": "python"}, {"type": "double", "name": "queries"}, {"type":
+    "double", "name": "query"}, {"type": "double", "name": "question"}, {"type": "double",
+    "name": "questions"}, {"type": "double", "name": "radio"}, {"type": "double",
+    "name": "radius"}, {"type": "double", "name": "rails"}, {"type": "double", "name":
+    "random"}, {"type": "double", "name": "range"}, {"type": "double", "name": "re"},
+    {"type": "double", "name": "react"}, {"type": "double", "name": "read"}, {"type":
+    "double", "name": "reader"}, {"type": "double", "name": "ready"}, {"type": "double",
+    "name": "really"}, {"type": "double", "name": "reason"}, {"type": "double", "name":
+    "record"}, {"type": "double", "name": "records"}, {"type": "double", "name": "red"},
+    {"type": "double", "name": "reference"}, {"type": "double", "name": "reflect"},
+    {"type": "double", "name": "refresh"}, {"type": "double", "name": "regex"}, {"type":
+    "double", "name": "register"}, {"type": "double", "name": "rel"}, {"type": "double",
+    "name": "related"}, {"type": "double", "name": "relative"}, {"type": "double",
+    "name": "release"}, {"type": "double", "name": "remove"}, {"type": "double", "name":
+    "render"}, {"type": "double", "name": "replace"}, {"type": "double", "name": "repository"},
+    {"type": "double", "name": "req"}, {"type": "double", "name": "request"}, {"type":
+    "double", "name": "requests"}, {"type": "double", "name": "require"}, {"type":
+    "double", "name": "required"}, {"type": "double", "name": "res"}, {"type": "double",
+    "name": "resource"}, {"type": "double", "name": "resources"}, {"type": "double",
+    "name": "response"}, {"type": "double", "name": "rest"}, {"type": "double", "name":
+    "result"}, {"type": "double", "name": "results"}, {"type": "double", "name": "retrieve"},
+    {"type": "double", "name": "return"}, {"type": "double", "name": "returned"},
+    {"type": "double", "name": "returns"}, {"type": "double", "name": "right"}, {"type":
+    "double", "name": "role"}, {"type": "double", "name": "root"}, {"type": "double",
+    "name": "route"}, {"type": "double", "name": "row"}, {"type": "double", "name":
+    "rows"}, {"type": "double", "name": "rpvfs8x"}, {"type": "double", "name": "ruby"},
+    {"type": "double", "name": "run"}, {"type": "double", "name": "runat"}, {"type":
+    "double", "name": "running"}, {"type": "double", "name": "runs"}, {"type": "double",
+    "name": "runtime"}, {"type": "double", "name": "sample"}, {"type": "double", "name":
+    "save"}, {"type": "double", "name": "savedinstancestate"}, {"type": "double",
+    "name": "say"}, {"type": "double", "name": "scale"}, {"type": "double", "name":
+    "schema"}, {"type": "double", "name": "schemas"}, {"type": "double", "name": "scope"},
+    {"type": "double", "name": "screen"}, {"type": "double", "name": "script"}, {"type":
+    "double", "name": "scripts"}, {"type": "double", "name": "scroll"}, {"type": "double",
+    "name": "search"}, {"type": "double", "name": "second"}, {"type": "double", "name":
+    "seconds"}, {"type": "double", "name": "section"}, {"type": "double", "name":
+    "security"}, {"type": "double", "name": "see"}, {"type": "double", "name": "seem"},
+    {"type": "double", "name": "seems"}, {"type": "double", "name": "select"}, {"type":
+    "double", "name": "selected"}, {"type": "double", "name": "selector"}, {"type":
+    "double", "name": "self"}, {"type": "double", "name": "send"}, {"type": "double",
+    "name": "sender"}, {"type": "double", "name": "server"}, {"type": "double", "name":
+    "service"}, {"type": "double", "name": "services"}, {"type": "double", "name":
+    "servlet"}, {"type": "double", "name": "session"}, {"type": "double", "name":
+    "set"}, {"type": "double", "name": "setting"}, {"type": "double", "name": "settings"},
+    {"type": "double", "name": "setup"}, {"type": "double", "name": "several"}, {"type":
+    "double", "name": "show"}, {"type": "double", "name": "showing"}, {"type": "double",
+    "name": "shown"}, {"type": "double", "name": "shows"}, {"type": "double", "name":
+    "side"}, {"type": "double", "name": "similar"}, {"type": "double", "name": "simple"},
+    {"type": "double", "name": "simply"}, {"type": "double", "name": "since"}, {"type":
+    "double", "name": "single"}, {"type": "double", "name": "sit"}, {"type": "double",
+    "name": "site"}, {"type": "double", "name": "size"}, {"type": "double", "name":
+    "slide"}, {"type": "double", "name": "slider"}, {"type": "double", "name": "small"},
+    {"type": "double", "name": "so"}, {"type": "double", "name": "socket"}, {"type":
+    "double", "name": "solid"}, {"type": "double", "name": "solution"}, {"type": "double",
+    "name": "solve"}, {"type": "double", "name": "someone"}, {"type": "double", "name":
+    "something"}, {"type": "double", "name": "sort"}, {"type": "double", "name": "source"},
+    {"type": "double", "name": "space"}, {"type": "double", "name": "span"}, {"type":
+    "double", "name": "specific"}, {"type": "double", "name": "split"}, {"type": "double",
+    "name": "spring"}, {"type": "double", "name": "springapplication"}, {"type": "double",
+    "name": "springframework"}, {"type": "double", "name": "sql"}, {"type": "double",
+    "name": "src"}, {"type": "double", "name": "stack"}, {"type": "double", "name":
+    "start"}, {"type": "double", "name": "started"}, {"type": "double", "name": "starter"},
+    {"type": "double", "name": "state"}, {"type": "double", "name": "statement"},
+    {"type": "double", "name": "static"}, {"type": "double", "name": "status"}, {"type":
+    "double", "name": "std"}, {"type": "double", "name": "step"}, {"type": "double",
+    "name": "still"}, {"type": "double", "name": "stop"}, {"type": "double", "name":
+    "store"}, {"type": "double", "name": "stored"}, {"type": "double", "name": "str"},
+    {"type": "double", "name": "stream"}, {"type": "double", "name": "string"}, {"type":
+    "double", "name": "strings"}, {"type": "double", "name": "strong"}, {"type": "double",
+    "name": "structure"}, {"type": "double", "name": "studio"}, {"type": "double",
+    "name": "stuff"}, {"type": "double", "name": "style"}, {"type": "double", "name":
+    "stylesheet"}, {"type": "double", "name": "sub"}, {"type": "double", "name": "submit"},
+    {"type": "double", "name": "success"}, {"type": "double", "name": "successfully"},
+    {"type": "double", "name": "suggestions"}, {"type": "double", "name": "sum"},
+    {"type": "double", "name": "sun"}, {"type": "double", "name": "super"}, {"type":
+    "double", "name": "support"}, {"type": "double", "name": "sure"}, {"type": "double",
+    "name": "svg"}, {"type": "double", "name": "swift"}, {"type": "double", "name":
+    "switch"}, {"type": "double", "name": "system"}, {"type": "double", "name": "tab"},
+    {"type": "double", "name": "table"}, {"type": "double", "name": "tables"}, {"type":
+    "double", "name": "tableview"}, {"type": "double", "name": "tag"}, {"type": "double",
+    "name": "tags"}, {"type": "double", "name": "take"}, {"type": "double", "name":
+    "takes"}, {"type": "double", "name": "target"}, {"type": "double", "name": "task"},
+    {"type": "double", "name": "tbody"}, {"type": "double", "name": "td"}, {"type":
+    "double", "name": "tell"}, {"type": "double", "name": "template"}, {"type": "double",
+    "name": "test"}, {"type": "double", "name": "testing"}, {"type": "double", "name":
+    "text"}, {"type": "double", "name": "textarea"}, {"type": "double", "name": "textbox"},
+    {"type": "double", "name": "texture"}, {"type": "double", "name": "textview"},
+    {"type": "double", "name": "th"}, {"type": "double", "name": "thank"}, {"type":
+    "double", "name": "thanks"}, {"type": "double", "name": "that"}, {"type": "double",
+    "name": "the"}, {"type": "double", "name": "them"}, {"type": "double", "name":
+    "theme"}, {"type": "double", "name": "then"}, {"type": "double", "name": "there"},
+    {"type": "double", "name": "thing"}, {"type": "double", "name": "things"}, {"type":
+    "double", "name": "think"}, {"type": "double", "name": "this"}, {"type": "double",
+    "name": "though"}, {"type": "double", "name": "thought"}, {"type": "double", "name":
+    "thread"}, {"type": "double", "name": "threads"}, {"type": "double", "name": "three"},
+    {"type": "double", "name": "throw"}, {"type": "double", "name": "throws"}, {"type":
+    "double", "name": "time"}, {"type": "double", "name": "times"}, {"type": "double",
+    "name": "title"}, {"type": "double", "name": "to"}, {"type": "double", "name":
+    "toggle"}, {"type": "double", "name": "token"}, {"type": "double", "name": "tomcat"},
+    {"type": "double", "name": "tools"}, {"type": "double", "name": "top"}, {"type":
+    "double", "name": "tostring"}, {"type": "double", "name": "total"}, {"type": "double",
+    "name": "tr"}, {"type": "double", "name": "transform"}, {"type": "double", "name":
+    "transition"}, {"type": "double", "name": "tried"}, {"type": "double", "name":
+    "true"}, {"type": "double", "name": "try"}, {"type": "double", "name": "trying"},
+    {"type": "double", "name": "two"}, {"type": "double", "name": "type"}, {"type":
+    "double", "name": "ui"}, {"type": "double", "name": "uiimage"}, {"type": "double",
+    "name": "uiview"}, {"type": "double", "name": "ul"}, {"type": "double", "name":
+    "unable"}, {"type": "double", "name": "undefined"}, {"type": "double", "name":
+    "understand"}, {"type": "double", "name": "unique"}, {"type": "double", "name":
+    "unknown"}, {"type": "double", "name": "up"}, {"type": "double", "name": "update"},
+    {"type": "double", "name": "updated"}, {"type": "double", "name": "upload"}, {"type":
+    "double", "name": "url"}, {"type": "double", "name": "use"}, {"type": "double",
+    "name": "used"}, {"type": "double", "name": "user"}, {"type": "double", "name":
+    "user_id"}, {"type": "double", "name": "userid"}, {"type": "double", "name": "username"},
+    {"type": "double", "name": "users"}, {"type": "double", "name": "uses"}, {"type":
+    "double", "name": "using"}, {"type": "double", "name": "usr"}, {"type": "double",
+    "name": "utf"}, {"type": "double", "name": "util"}, {"type": "double", "name":
+    "val"}, {"type": "double", "name": "valid"}, {"type": "double", "name": "validation"},
+    {"type": "double", "name": "value"}, {"type": "double", "name": "values"}, {"type":
+    "double", "name": "var"}, {"type": "double", "name": "varchar"}, {"type": "double",
+    "name": "variable"}, {"type": "double", "name": "variables"}, {"type": "double",
+    "name": "ve"}, {"type": "double", "name": "version"}, {"type": "double", "name":
+    "vertical"}, {"type": "double", "name": "via"}, {"type": "double", "name": "video"},
+    {"type": "double", "name": "view"}, {"type": "double", "name": "views"}, {"type":
+    "double", "name": "visible"}, {"type": "double", "name": "visual"}, {"type": "double",
+    "name": "void"}, {"type": "double", "name": "want"}, {"type": "double", "name":
+    "warning"}, {"type": "double", "name": "way"}, {"type": "double", "name": "web"},
+    {"type": "double", "name": "webkit"}, {"type": "double", "name": "website"}, {"type":
+    "double", "name": "webview"}, {"type": "double", "name": "weight"}, {"type": "double",
+    "name": "well"}, {"type": "double", "name": "what"}, {"type": "double", "name":
+    "where"}, {"type": "double", "name": "which"}, {"type": "double", "name": "white"},
+    {"type": "double", "name": "whole"}, {"type": "double", "name": "widget"}, {"type":
+    "double", "name": "width"}, {"type": "double", "name": "window"}, {"type": "double",
+    "name": "windows"}, {"type": "double", "name": "with"}, {"type": "double", "name":
+    "within"}, {"type": "double", "name": "without"}, {"type": "double", "name": "wondering"},
+    {"type": "double", "name": "word"}, {"type": "double", "name": "words"}, {"type":
+    "double", "name": "work"}, {"type": "double", "name": "worked"}, {"type": "double",
+    "name": "working"}, {"type": "double", "name": "works"}, {"type": "double", "name":
+    "would"}, {"type": "double", "name": "wrap_content"}, {"type": "double", "name":
+    "write"}, {"type": "double", "name": "writing"}, {"type": "double", "name": "written"},
+    {"type": "double", "name": "wrong"}, {"type": "double", "name": "www"}, {"type":
+    "double", "name": "xcode"}, {"type": "double", "name": "xml"}, {"type": "double",
+    "name": "xmlns"}, {"type": "double", "name": "year"}, {"type": "double", "name":
+    "yes"}, {"type": "double", "name": "yet"}, {"type": "double", "name": "you"},
+    {"type": "double", "name": "zip"}]'
+  outputs: '[{"type": "tensor", "tensor-spec": {"dtype": "str", "shape": [-1]}}]'
+  params: null
+utc_time_created: '2023-12-29 13:14:54.662210'
