@@ -13,7 +13,7 @@ from nltk.tokenize import sent_tokenize, word_tokenize
 from nltk.stem import WordNetLemmatizer
 from bs4 import BeautifulSoup
 
-base = 'k_a_o_adjovi@instance-1/home/k_a_o_adjovi/PJT5_Open_classrooms_MLE/
+base = 'k_a_o_adjovi@instance-1/home/k_a_o_adjovi/PJT5_Open_classrooms_MLE/'
 custom_punkt_path = base + 'corpora/punkt'
 punkt_path = nltk.data.find(f'{custom_punkt_path}/english.pickle')
 
