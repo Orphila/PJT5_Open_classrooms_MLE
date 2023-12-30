@@ -1,8 +1,6 @@
 # App version 2 --> charger les fichiers modèles
 from flask import Flask, jsonify, request
 import pandas as pd  
-import mlflow
-
 
 app = Flask(__name__)
 
@@ -12,6 +10,7 @@ from nltk.tokenize import sent_tokenize, word_tokenize
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 
+nltk.download('punkt')
 nltk.download('stopwords')
 nltk.download('wordnet')
 
@@ -65,21 +64,17 @@ def preprocess(df):
 def preprocess_text(text):
     cleaned_text = transform_bow_fct(text)
     return cleaned_text
-    
+
+
 ################################################ Encoding TF - IDF
 
-import json 
-def load_vec():
-    path = "tfidf_vectorizer"
-    with open(path, 'r') as file:
-        doc = json.load(file)
-    return doc
-
-vec_tfidf = load_vec()
+from sklearn.feature_extraction.text import TfidfVectorizer
+tfidf_vectorizer = TfidfVectorizer(max_features=1000)
+import json
+import pickle
 
 def load_dico():
     path =  "topic_to_tag.json"
-   
     with open(path, 'r') as file:
         doc = json.load(file)
     return doc
@@ -87,16 +82,16 @@ def load_dico():
 topic_to_tag = load_dico()
 
 def encoding(X):
-    X_pred_tfidf = vec_tfidf.transform(X)
+    X_pred_tfidf = tfidf_vectorizer.transform(X)
     return X_pred_tfidf
 
 def load_models():
-    model_path_unsupervised = "lda"  
-    model_path_supervised = "spv"
-    with open(model_path_unsupervised, 'r') as file:
-        doc1 = json.load(file)
-    with open(model_path_supervised, 'r') as file:
-        doc2 = json.load(file)
+    model_path_unsupervised = "lda.pkl"  
+    model_path_supervised = "spv.pkl"
+    with open(model_path_unsupervised, 'rb') as file:
+        doc1 = pickle.load(file)
+    with open(model_path_supervised, 'rb') as file:
+        doc2 = pickle.load(file)
     return [doc1,doc2]
 
 lda_model = load_models()[0]
@@ -135,11 +130,7 @@ def predict_endpoint():
     text = request.args.get('text', '')
     result = predict(text)
     return result
-################################################ ??
-@app.route('/predict2', methods=['POST'])
-def predict2():
-    data = request.json
-    return jsonify(data)
+################################################ Launch
 
 if __name__ == '__main__':
     #app.run(host="0.0.0.0",port=8081)
