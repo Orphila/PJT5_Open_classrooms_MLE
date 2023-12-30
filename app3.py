@@ -80,46 +80,64 @@ def load_df():
 
 df = load_df()
 
+##################### traitement tags #####################
+df['Tags'] = df['Tags'].str.replace('><', ',').str.replace('<', '').str.replace('>', '')
+
+from collections import Counter
+# Fréquence des mots dans 'Tags'
+all_tags = df['Tags'].str.split(',').explode().tolist()
+tag_counts = Counter(all_tags)
+# Trouver les 50 mots les plus fréquents
+top_50_tags = [tag for tag, _ in tag_counts.most_common(50)]
+# Filtrer les listes de mots pour ne contenir que les 50 mots les plus fréquents
+def filter_tags(tags):
+    return [tag for tag in tags if tag in top_50_tags]
+df['Tags'] = df['Tags'].str.split(',').apply(filter_tags)
+# Filtrer les lignes où 'Tags' est vide après le filtrage
+df = df[df['Tags'].apply(len) > 0]
+df['nb_tags'] = df['Tags'].apply(lambda x: len(x))
+df = df[df['nb_tags']==3].reset_index(drop=True)
+##################### traitement tags #####################
+
 from sklearn.feature_extraction.text import TfidfVectorizer
 tfidf_vectorizer = TfidfVectorizer(max_features=1000)
+tfidf_array = tfidf_vectorizer.fit_transform(df['Cleaned_Body']).toarray()
+feature_names = tfidf_vectorizer.get_feature_names_out()
 
-def load_vec(data):
-    tfidf_array = tfidf_vectorizer.fit_transform(data['Cleaned_Body']).toarray()
-    feature_names = tfidf_vectorizer.get_feature_names_out()
+def load_vec():
+    
     tfidf_df = pd.DataFrame(tfidf_array, columns=feature_names)
     # Concaténer les DataFrames sans utiliser de sample
-    data.reset_index(drop=True, inplace=True)
+    df.reset_index(drop=True, inplace=True)
     return tfidf_df
 
-tfidf_df = load_vec(df)
+tfidf_df = load_vec()
 
 from sklearn.decomposition import LatentDirichletAllocation
 
-def load_unspv():
+def load_unspv(X):
 
-    num_topics = 50
-    lda_model_sklearn = LatentDirichletAllocation(n_components=num_topics, random_state=42)
-    lda_model_sklearn.fit(tfidf_df)
+    lda_model_sklearn = LatentDirichletAllocation(n_components=50, random_state=42)
+    lda_model_sklearn.fit(X)
     return lda_model_sklearn 
 
-from sklearn.model_selection import train_test_split
-from sklearn.naive_bayes import MultinomialNB
-import random as rd
 
-def load_spv():
-    X_train, X_test, y_train, y_test = train_test_split(tfidf_df, df['Tags'], test_size=0.2, random_state=42)
-    y_train = [y[rd.randint(0, 2)] for y in y_train]
-    y_test = [y[rd.randint(0, 2)] for y in y_test]
+from sklearn.naive_bayes import MultinomialNB
+
+def load_spv(X):
+
+    cible = df['Tags'] 
+    Y = [y[0] for y in cible]
     naive_bayes = MultinomialNB(fit_prior=True)
-    naive_bayes.fit(X_train, y_train)
+    naive_bayes.fit(X, Y)
     return naive_bayes 
 
-lda_model = load_unspv()
-supervised = load_spv()
+lda_model = load_unspv(tfidf_df)
+supervised = load_spv(tfidf_df)
 
-top_n = 3
-top_topics_sklearn = lda_model.transform(tfidf_df).argsort(axis=1)[:, -top_n:]
+top_topics_sklearn = lda_model.transform(tfidf_df).argsort(axis=1)[:, -3:]
 df['lda_predict_sklearn'] = [topics for topics in top_topics_sklearn]
+#prd = df['lda_predict_sklearn']
 
 from collections import defaultdict
 def load_dico():
@@ -169,12 +187,11 @@ def load_dico():
 
 topic_to_tag = load_dico()
 
-def encoding(X):
-    X_pred_tfidf = tfidf_vectorizer.transform(X)
+def encoding(txt):
+    X_pred_tfidf = tfidf_vectorizer.transform(txt)
     return X_pred_tfidf
 
 ################################################ Prédiction
-
 
 @app.route('/', methods=['GET'])
 def hello():
@@ -183,21 +200,21 @@ def hello():
 def predict(text):
     X_pred = pd.DataFrame({'text': [text]})
     # Prétraitement
-    X_pred['text'] = X_pred['text'].apply(preprocess_text)
+    ask = X_pred['text'].apply(preprocess_text)
+
     # Encoding
-    X_pred_tfidf = encoding(X_pred['text'])
+    X_pred_tfidf = encoding(ask)
     #Prédiction supervisée (tfidf)
     predicted_tags_supervised = supervised.predict(X_pred_tfidf).tolist()
     
-    top_topics = lda_model.transform(X_pred_tfidf).argsort(axis=1)[:, -top_n:]
+    top_topics = lda_model.transform(X_pred_tfidf).argsort(axis=1)[:, -3:]
     result_numbers = [topics.tolist() for topics in top_topics]
-    result_numbers  = [str(float(num)) for num in result_numbers[0]]
+    result_numbers  = [int(num) for num in result_numbers[0]]
     result_tags = [topic_to_tag.get(num, "Tag_inconnu") for num in result_numbers]
     #return topic_to_tag
     return jsonify({'results_supervised': predicted_tags_supervised
-                    ,'results_unsupervised_0' :result_tags
+                    ,'results_unsupervised_0' : result_tags
                     })
-    
 
 ################################################ Affichage
 @app.route('/predict', methods=['GET'])
