@@ -2,7 +2,7 @@ import streamlit as st
 import requests
     
 def get_prediction(text):
-    api_url = "http://localhost:8081/predict"
+    api_url = "http://34.38.107.195:80/predict"
     response = requests.get(api_url, params={'text': text})
 
     if response.status_code == 200:
