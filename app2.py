@@ -73,6 +73,14 @@ tfidf_vectorizer = TfidfVectorizer(max_features=1000)
 import json
 import pickle
 
+def load_vec():
+    path = "vec.pkl"
+    with open(path, 'rb') as file:
+        vc = pickle.load(file)
+    return vc
+
+tfidf_vectorizer = load_vec()
+
 def load_dico():
     path =  "topic_to_tag.json"
     with open(path, 'r') as file:

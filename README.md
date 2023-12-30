@@ -13,3 +13,7 @@ Modélisation : Mise en œuvre d'approches non supervisées (bag-of-words) et su
 MLOps : Utilisation d'outils MLOps comme MLFlow pour le suivi des expérimentations, l'automatisation du pipeline, et l'analyse du "model drift".
 Déploiement : Déploiement d'un modèle de proposition de tags sous forme d'API sur le Cloud.
 
+NB : Il y a 3 versions de app.py (l'API flask). LA première (app.py) permet de faire les test en local en utilisant les logs mlflow, 
+la seconde (app2.py, la version déployée) récupère seulement les fichiers dont on a besoin 
+la troisième (app3.py) ne se sert pas des fichiers et re-entraine les modèles, ce quie st fonctionnel mais beaucoup trop long
+
