@@ -158,5 +158,5 @@ def predict_endpoint():
 ################################################ Launch
 
 if __name__ == '__main__':
-    app.run(debug=False,host="0.0.0.0",port=8581)
+    app.run(debug=False,host="0.0.0.0",port=8501)
 
