@@ -17,3 +17,8 @@ jobs:
         run: pytest test_tfidf.py
       - name: Run test_models
         run: pytest test_models.py
+      
+      - name: Run backend
+        run: python app2.py
+      - name: Run frontend
+        run: streamlit run front.py
