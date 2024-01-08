@@ -142,7 +142,7 @@ def predict(text):
     
 
 ################################################ Affichage
-@app.route('/predict', methods=['POST'])
+@app.route('/predict', methods=['GET'])
 def predict_endpoint():
     text = request.args.get('text', '')
     result = predict(text)
@@ -150,5 +150,5 @@ def predict_endpoint():
 ################################################ Launch
 
 if __name__ == '__main__':
-    app.run(debug=False,host="0.0.0.0",port=80)
+    app.run(debug=True,host="0.0.0.0",port=80)
 
