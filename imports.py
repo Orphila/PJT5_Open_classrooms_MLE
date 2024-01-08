@@ -26,15 +26,12 @@ df['Tags'] = df['Tags'].str.split(',').apply(filter_tags)
 # Filtrer les lignes où 'Tags' est vide après le filtrage
 df = df[df['Tags'].apply(len) > 0]
 
-df['nb_tags'] = df['Tags'].apply(lambda x: len(x))
-df = df[df['nb_tags']==3].reset_index(drop=True)
-
 ############################################# Nettoyage du texte #############################################
 
 import nltk
 from nltk.tokenize import sent_tokenize, word_tokenize
 from nltk.corpus import stopwords
-from nltk.stem import WordNetLemmatizer
+from nltk.stem import PorterStemmer
 
 nltk.download('punkt')
 nltk.download('stopwords')
@@ -44,6 +41,7 @@ from bs4 import BeautifulSoup
 
 # Nettoyage
 def strip_html_bs(text):
+    """nettoyage des balises html"""
     soup = BeautifulSoup(text, 'html.parser')
     return soup.get_text()
 
@@ -66,19 +64,20 @@ def lower_start_fct(list_words):
     lw = [w.lower() for w in list_words if (not w.startswith("@")) and (not w.startswith("#")) and (not w.startswith("http"))]
     return lw
 
-def lemma_fct(list_words):
-    """lemmatisation"""
-    lemmatizer = WordNetLemmatizer()
-    lem_w = [lemmatizer.lemmatize(w) for w in list_words]
-    return lem_w
+def stemmer_fct(list_words):
+    """Stemming"""
+    stemmer = PorterStemmer()
+    stemmed_words = [stemmer.stem(w) for w in list_words]
+    return stemmed_words
 
 def transform_bow_fct(desc_text):
     """fonction de transformation"""
     text_stripped = strip_html_bs(desc_text)
     word_tokens = tokenizer_fct(text_stripped)
-    lw = lower_start_fct(word_tokens)
-    sw = stop_word_filter_fct(lw)
-    transf_desc_text = ' '.join(sw)
+    sw = stop_word_filter_fct(word_tokens)
+    lw = lower_start_fct(sw)
+    lem = stemmer_fct(lw) 
+    transf_desc_text = ' '.join(lem)
     return transf_desc_text
 
 def preprocess(df):
@@ -104,11 +103,6 @@ feature_names = tfidf_vectorizer.get_feature_names_out()
 # Scores de chaque mot
 tfidf_df = pd.DataFrame(tfidf_array, columns=feature_names)
 
-# Concaténez les DataFrames sans utiliser de sample
-df.reset_index(drop=True, inplace=True)
-df2 = pd.concat([df, tfidf_df], axis=1)
-
-
 ############################################# unsupervised #############################################
 
 import gensim
@@ -132,42 +126,54 @@ lda_model_gensim= gensim.models.LdaModel(corpus=corpus_tfidf_gensim, id2word=dic
 lda_model_sklearn = LatentDirichletAllocation(n_components=num_topics, random_state=42)
 lda_model_sklearn.fit(X)
 
-# Obtention des trois sujets les plus probables pour chaque ligne de tfidf_df
-top_n = 3
+# Convertir les tags en ensembles
+set_tags = df['Tags'].apply(set)
+
+# Obtention des n sujets les plus probables pour chaque ligne de tfidf_df, où n est le nombre de tags
 top_topics_gensim = lda_model_gensim.get_document_topics(corpus_tfidf_gensim)
-top_topics_sklearn = lda_model_sklearn.transform(X).argsort(axis=1)[:, -top_n:]
+top_topics_gensim = [sorted(topics, key=lambda x: x[1], reverse=True)[:len(tags)] for topics, tags in zip(top_topics_gensim,set_tags)]
+
+top_topics_sklearn = lda_model_sklearn.transform(X).argsort(axis=1)[:, ::-1]
+top_topics_sklearn = [topics[:len(tags)] for topics, tags in zip(top_topics_sklearn, set_tags)]
 
 # Création d'une colonne 'lda_predict' avec la liste des sujets les plus probables
-df['lda_predict_gensim'] = [sorted(topics, key=lambda x: x[1], reverse=True)[:top_n] for topics in top_topics_gensim]
+df['lda_predict_gensim'] = [topics for topics in top_topics_gensim]
 df['lda_predict_gensim'] = df['lda_predict_gensim'].apply(lambda x: [topic[0] for topic in x])
-
 df['lda_predict_sklearn'] = [topics for topics in top_topics_sklearn]
-
 
 ############################################# supervised #############################################
 
 import random as rd
 from sklearn.naive_bayes import MultinomialNB
+from sklearn.multioutput import MultiOutputClassifier
+from sklearn.preprocessing import MultiLabelBinarizer
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import jaccard_score
 
 
 rd.seed(0)
 
 def modelisation(enc,name):
-    # Diviser les données pour l'entraînement et le test
-    X_train, X_test, y_train, y_test = train_test_split(enc, df['Tags'], test_size=0.2, random_state=42)
-    y_train = [y[rd.randint(0, 2)] for y in y_train]
-    y_test = [y[rd.randint(0, 2)] for y in y_test]
-    naive_bayes = MultinomialNB()
-    naive_bayes.fit(X_train, y_train)
+    # Conversion des tags en une représentation binaire
+    mlb = MultiLabelBinarizer()
+    y_bin = mlb.fit_transform(df['Tags'])
+
+    # Division en ensembles d'entraînement et de test
+    X_train, X_test, y_train_bin, y_test_bin = train_test_split(enc, y_bin, test_size=0.2, random_state=42)
+
+    nb_model = MultinomialNB()
+    multioutput_nb = MultiOutputClassifier(nb_model)
+    multioutput_nb.fit(X_train, y_train_bin)
     # Initialisation et entrainement du modèle
 
 
     # Prédictions
-    predicted_tags = naive_bayes.predict(X_test)
-    accuracy = accuracy_score(y_test, predicted_tags)
+    predicted_tags_nb_bin = multioutput_nb.predict(X_test)
 
-    return("La précision du modèle supervisé avec ",name," est de ",round(accuracy,2)*100," % ")
+    # Calculer le score Jaccard pour le modèle Random Forest
+    jaccard_score_nb = jaccard_score(y_test_bin, predicted_tags_nb_bin, average='micro')
+
+
+    return("Le score supervisé avec ",name," est de ",round(jaccard_score_nb,2))
 
 modelisation(tfidf_df,'tf_idf')

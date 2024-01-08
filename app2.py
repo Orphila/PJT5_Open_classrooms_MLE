@@ -18,6 +18,7 @@ from bs4 import BeautifulSoup
 
 # Nettoyage
 def strip_html_bs(text):
+    """nettoyage des balises html"""
     soup = BeautifulSoup(text, 'html.parser')
     return soup.get_text()
 
@@ -50,9 +51,10 @@ def transform_bow_fct(desc_text):
     """fonction de transformation"""
     text_stripped = strip_html_bs(desc_text)
     word_tokens = tokenizer_fct(text_stripped)
-    lw = lower_start_fct(word_tokens)
-    sw = stop_word_filter_fct(lw)
-    transf_desc_text = ' '.join(sw)
+    sw = stop_word_filter_fct(word_tokens)
+    lw = lower_start_fct(sw)
+    lem = lemma_fct(lw) 
+    transf_desc_text = ' '.join(lem)
     return transf_desc_text
 
 def preprocess(df):
@@ -82,7 +84,7 @@ def load_vec():
 tfidf_vectorizer = load_vec()
 
 def load_dico():
-    path =  "topic_to_tag.json"
+    path =  "topic_to_tag_2.json"
     with open(path, 'r') as file:
         doc = json.load(file)
     return doc
@@ -93,8 +95,16 @@ def encoding(X):
     X_pred_tfidf = tfidf_vectorizer.transform(X)
     return X_pred_tfidf
 
+def load_mlb():
+    path = "mlb.pkl"
+    with open(path, 'rb') as file:
+        mb = pickle.load(file)
+    return mb
+
+mlb = load_mlb()
+
 def load_models():
-    model_path_unsupervised = "lda.pkl"  
+    model_path_unsupervised = "LDA.pkl"  
     model_path_supervised = "spv.pkl"
     with open(model_path_unsupervised, 'rb') as file:
         doc1 = pickle.load(file)
@@ -116,19 +126,18 @@ def predict(text):
     X_pred = pd.DataFrame({'text': [text]})
     # Prétraitement
     X_pred['text'] = X_pred['text'].apply(preprocess_text)
-    # Encoding
+    # Encoding 
     X_pred_tfidf = encoding(X_pred['text'])
     #Prédiction supervisée (tfidf)
-    predicted_tags_supervised = supervised.predict(X_pred_tfidf).tolist()
+    predicted_tags_nb_bin = supervised.predict(X_pred_tfidf)
+    predicted_tags_list = [list(tags) if tags else ['no_result'] for tags in mlb.inverse_transform(predicted_tags_nb_bin)]
 
-    top_n = 3
-    top_topics = lda_model.transform(X_pred_tfidf).argsort(axis=1)[:, -top_n:]
-    result_numbers = [topics.tolist() for topics in top_topics]
-    result_numbers  = [str(float(num)) for num in result_numbers[0]]
-    result_tags = [topic_to_tag.get(num, "Tag_inconnu") for num in result_numbers]
-    #return topic_to_tag
-    return jsonify({'results_supervised': predicted_tags_supervised
-                    ,'results_unsupervised_0' :result_tags
+    top_topics = lda_model.transform(X_pred_tfidf).argsort(axis=1)[:, ::-1]
+    result_numbers = [topics.tolist() for topics in top_topics][0][:5]
+    result_tags = [topic_to_tag.get(str(float(num)), "Tag_inconnu") for num in result_numbers]
+
+    return jsonify({'results_supervised': predicted_tags_list
+                    ,'results_unsupervised' :result_tags
                     })
     
 
@@ -141,5 +150,5 @@ def predict_endpoint():
 ################################################ Launch
 
 if __name__ == '__main__':
-    app.run(debug=True,host="0.0.0.0",port=80)
+    app.run(debug=False,host="0.0.0.0",port=80)
 

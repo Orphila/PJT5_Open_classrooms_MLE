@@ -2,14 +2,14 @@ import streamlit as st
 import requests
     
 def get_prediction(text):
-    api_url = "http://34.38.107.195:80/predict"
+    api_url = "http://127.0.0.1:80/predict"
     response = requests.get(api_url, params={'text': text})
 
     if response.status_code == 200:
         result = response.json()
 
         pred_supervised = result.get('results_supervised', 'Valeur_inconnue')
-        pred_unsupervised = result.get('results_unsupervised_0', 'Valeur_inconnue')
+        pred_unsupervised = result.get('results_unsupervised', 'Valeur_inconnue')
 
         return pred_supervised, pred_unsupervised
     else:
