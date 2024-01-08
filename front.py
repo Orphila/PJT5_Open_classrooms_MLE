@@ -2,8 +2,8 @@ import streamlit as st
 import requests
     
 def get_prediction(text):
-    api_url = "https://tags-forecast.predict.onrender.com"
-    response = requests.get(api_url, params={'text': text},verify=False)
+    api_url = "https://tags-forecast.onrender.com"
+    response = requests.get(api_url, params={'text': text})
 
     if response.status_code == 200:
         result = response.json()
