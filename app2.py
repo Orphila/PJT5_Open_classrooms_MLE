@@ -118,9 +118,7 @@ supervised = load_models()[1]
 ################################################ Prédiction
 from collections import defaultdict
 
-@app.route('/', methods=['GET'])
-def hello():
-    return jsonify({'tags': 'sql','pred':'java'})
+
 
 def predict(text):
     X_pred = pd.DataFrame({'text': [text]})
@@ -140,13 +138,23 @@ def predict(text):
                     ,'results_unsupervised' :result_tags
                     })
     
-
+@app.route('/', methods=['GET'])
+def predict_endpoint():
+    text = request.args.get('text', '')
+    result = predict(text)
+    return result
 ################################################ Affichage
+"""
+@app.route('/', methods=['GET'])
+def hello():
+    return jsonify({'tags': 'sql','pred':'java'})
+
 @app.route('/predict', methods=['GET'])
 def predict_endpoint():
     text = request.args.get('text', '')
     result = predict(text)
     return result
+"""
 ################################################ Launch
 
 if __name__ == '__main__':
