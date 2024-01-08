@@ -142,7 +142,7 @@ def predict(text):
     
 
 ################################################ Affichage
-@app.route('/predict', methods=['GET'])
+@app.route('/predict', methods=['POST'])
 def predict_endpoint():
     text = request.args.get('text', '')
     result = predict(text)
