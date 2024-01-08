@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 ################################################ Nettoyage du texte
 import nltk
-from nltk.tokenize import sent_tokenize, word_tokenize
+from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 
